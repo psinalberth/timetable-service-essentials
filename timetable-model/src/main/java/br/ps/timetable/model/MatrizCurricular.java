@@ -32,14 +32,14 @@ public class MatrizCurricular extends Entidade {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_MATRIZ")
-	@JsonView(Views.Public.class)
 	private int id;
 	
+	@JsonView(Views.MatrizCurricular.class)
 	@NotNull(message="O <b>ano</b> é obrigatório.")
 	@Column(name="ANO", columnDefinition="SMALLINT(4)")
-	@JsonView(Views.Public.class)
 	private Integer ano;
 	
+	@JsonView(Views.MatrizCurricular.class)
 	@NotNull(message="A quantidade de <b>semestres</b> é obrigatória.")
 	@Column(name="SEMESTRES", columnDefinition="TINYINT(2)")
 	private Integer semestres;
@@ -47,13 +47,11 @@ public class MatrizCurricular extends Entidade {
 	@NotNull(message="O <b>curso</b> é obrigatório.")
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_CURSO")
-	@JsonView(Views.Compound.class)
 	private Curso curso;
 	
 	@NotNull(message="O <b>turno</b> é obrigatório.")
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_TURNO")
-	@JsonView(Views.Compound.class)
 	private Turno turno;
 	
 	@Valid
@@ -62,6 +60,7 @@ public class MatrizCurricular extends Entidade {
 	@JsonIgnore
 	private List<Periodo> periodos = new ArrayList<Periodo>();
 	
+	@JsonView(Views.Lookup.class)
 	public int getId() {
 		return id;
 	}
@@ -77,7 +76,8 @@ public class MatrizCurricular extends Entidade {
 	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
-
+	
+	@JsonView(Views.MatrizCurricular.class)
 	public Turno getTurno() {
 		return turno;
 	}
@@ -93,7 +93,8 @@ public class MatrizCurricular extends Entidade {
 	public void setSemestres(Integer semestres) {
 		this.semestres = semestres;
 	}
-
+	
+	@JsonView(Views.MatrizCurricular.class)
 	public Curso getCurso() {
 		return curso;
 	}

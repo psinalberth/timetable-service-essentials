@@ -45,7 +45,7 @@ public class Turno extends Entidade {
 	private Set<MatrizCurricular> matrizes = new HashSet<MatrizCurricular>();
 
 	@Override
-	@JsonView(Views.Compound.class)
+	@JsonView(Views.Lookup.class)
 	public int getId() {
 		return id;
 	}
@@ -63,7 +63,7 @@ public class Turno extends Entidade {
 		this.codigo = codigo;
 	}
 	
-	@JsonView(Views.Compound.class)
+	@JsonView(Views.Lookup.class)
 	public String getNome() {
 		return nome;
 	}

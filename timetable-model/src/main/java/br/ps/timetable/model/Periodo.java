@@ -17,10 +17,6 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import br.ps.timetable.view.Views;
-
 @Entity
 @Table(name="PERIODO")
 public class Periodo extends Entidade {
@@ -45,7 +41,6 @@ public class Periodo extends Entidade {
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="periodo", cascade=CascadeType.ALL)
 	private List<DetalheDisciplina> detalhes = new ArrayList<DetalheDisciplina>();
 	
-	@JsonView(Views.Compound.class)
 	public int getId() {
 		return id;
 	}
@@ -54,7 +49,6 @@ public class Periodo extends Entidade {
 		this.id = id;
 	}
 	
-	@JsonView(Views.Compound.class)
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -79,7 +73,6 @@ public class Periodo extends Entidade {
 		this.detalhes = detalhes;
 	}
 	
-	@JsonView(Views.Compound.class)
 	public int getTamanho() {
 		return detalhes.size();
 	}

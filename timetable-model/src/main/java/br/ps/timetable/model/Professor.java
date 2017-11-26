@@ -1,9 +1,7 @@
 package br.ps.timetable.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,11 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -38,12 +33,11 @@ public class Professor extends Entidade {
 	@NotNull
 	@Column(name="ID_PROFESSOR")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@JsonView(Views.Public.class)
 	private int id;
 	
+	@JsonView(Views.Professor.class)
 	@NotBlank(message="O <b>nome</b> é obrigatório.")
 	@Column(name="NOME", length=100)
-	@JsonView(Views.Public.class)
 	private String nome;
 	
 	@NotBlank(message="O <b>endereço</b> é obrigatório.")
@@ -72,6 +66,7 @@ public class Professor extends Entidade {
 	private List<Disciplina> disciplinasLecionaveis = new ArrayList<Disciplina>();
 
 	@Override
+	@JsonView(Views.Lookup.class)
 	public int getId() {
 		return id;
 	}
@@ -96,7 +91,7 @@ public class Professor extends Entidade {
 		this.endereco = endereco;
 	}
 	
-	@JsonView(Views.Compound.class)
+	@JsonView(Views.Lookup.class)
 	public Departamento getDepartamento() {
 		return departamento;
 	}

@@ -37,7 +37,7 @@ public class Disciplina extends Entidade {
 	@Column(name="DESCRICAO", length=100)
 	private String descricao;
 	
-	@JsonView(Views.Compound.class)
+	@JsonView(Views.Lookup.class)
 	public int getId() {
 		return id;
 	}
@@ -50,7 +50,7 @@ public class Disciplina extends Entidade {
 		return sigla;
 	}
 	
-	@JsonView(Views.Compound.class)
+	@JsonView(Views.Lookup.class)
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
 	}
@@ -63,7 +63,7 @@ public class Disciplina extends Entidade {
 		this.codigo = codigo;
 	}
 	
-	@JsonView(Views.Compound.class)
+	@JsonView(Views.Lookup.class)
 	public String getDescricao() {
 		return descricao;
 	}

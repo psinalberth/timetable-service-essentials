@@ -18,10 +18,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import br.ps.timetable.view.Views;
-
 @Entity
 @Table(name="DETALHE_DISCIPLINA")
 public class DetalheDisciplina extends Entidade {
@@ -66,7 +62,6 @@ public class DetalheDisciplina extends Entidade {
 	@JoinTable(name="PRE_REQUISITO_DISCIPLINA", joinColumns = {@JoinColumn(name="ID_DETALHE")}, inverseJoinColumns = {@JoinColumn(name="ID_DISCIPLINA")})
 	private List<Disciplina> preRequisitos = new ArrayList<Disciplina>();
 	
-	@JsonView(Views.Compound.class)
 	public int getId() {
 		return id;
 	}
@@ -83,7 +78,6 @@ public class DetalheDisciplina extends Entidade {
 		this.creditos = creditos;
 	}
 	
-	@JsonView(Views.Compound.class)
 	public Integer getCargaHoraria() {
 		return cargaHoraria;
 	}
@@ -100,7 +94,6 @@ public class DetalheDisciplina extends Entidade {
 		this.periodo = periodo;
 	}
 	
-	@JsonView(Views.Compound.class)
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
@@ -117,7 +110,6 @@ public class DetalheDisciplina extends Entidade {
 		this.grupoEletiva = grupoEletiva;
 	}
 	
-	@JsonView(Views.Compound.class)
 	public boolean isObrigatoria() {
 		return obrigatoria;
 	}
@@ -138,7 +130,7 @@ public class DetalheDisciplina extends Entidade {
 	public boolean isGrupoEletivasObrigatorio() {
 		return ((!isObrigatoria()) && getGrupoEletiva() == null);
 	}
-
+	
 	public List<Disciplina> getPreRequisitos() {
 		return preRequisitos;
 	}

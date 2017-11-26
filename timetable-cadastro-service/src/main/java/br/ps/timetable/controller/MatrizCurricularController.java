@@ -24,26 +24,33 @@ public class MatrizCurricularController {
 	private MatrizesCurriculares matrizesCurriculares;
 	
 	@RequestMapping(path="/", method=RequestMethod.GET)
-	@JsonView(Views.Compound.class)
+	@JsonView(Views.MatrizCurricular.class)
 	public Iterable<MatrizCurricular> all () {
 		return matrizesCurriculares.findAll();
 	}
 	
 	@RequestMapping(path="/{id}", method=RequestMethod.GET)
-	@JsonView(Views.Compound.class)
+	@JsonView(Views.MatrizCurricular.class)
 	public MatrizCurricular byId(@PathVariable("id") int id) {
 		return matrizesCurriculares.findOne(id);
 	}
 	
 	@RequestMapping(path="/{id}/periodos", method=RequestMethod.GET)
-	@JsonView(Views.Compound.class)
+	@JsonView(Views.MatrizCurricular.class)
 	public Iterable<Periodo> getPeriodos(@PathVariable("id") int id) {
 		return matrizesCurriculares.findOne(id).getPeriodos();
 	}
 	
-	@JsonView(Views.Compound.class)
+	@JsonView(Views.MatrizCurricular.class)
 	@RequestMapping(path="/{matriz}/periodos/{periodo}/detalhes")
 	public List<DetalheDisciplina> getDetalhes(@PathVariable("matriz") int matrizId, @PathVariable("periodo") int periodoId) {
 		return matrizesCurriculares.findOne(matrizId).getPeriodos().get(periodoId-1).getDetalhes();
+	}
+	
+	@JsonView(Views.MatrizCurricular.class)
+	@RequestMapping(path="/{matriz}/periodos/{periodo}/detalhes/{detalhe}")
+	public DetalheDisciplina getDisciplina(@PathVariable("matriz") int matrizId, @PathVariable("periodo") int periodoId, 
+			                               @PathVariable("detalhe") int detalheId) {
+		return matrizesCurriculares.findOne(matrizId).getPeriodos().get(periodoId-1).getDetalhes().stream().filter(detalhe -> detalhe.getId() == detalheId).findAny().get();
 	}
 }

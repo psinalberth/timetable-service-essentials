@@ -6,4 +6,6 @@ import br.ps.timetable.model.Curso;
 
 public interface Cursos extends CrudRepository<Curso, Integer> {
 
+	public Curso findByCodigo(int codigo);
+
 }

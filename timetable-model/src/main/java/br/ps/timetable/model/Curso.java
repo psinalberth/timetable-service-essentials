@@ -24,35 +24,33 @@ public class Curso extends Entidade {
 
 	private static final long serialVersionUID = 2945698851298486207L;
 	
-	@JsonView(Views.Public.class)
 	@Id
 	@Column(name="ID_CURSO")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@JsonView(Views.Public.class)
+	@JsonView(Views.Curso.class)
 	@NotBlank(message="O <b>código</b> é obrigatório.")
 	@Column(name="CODIGO", unique=true, length=2)
 	@Pattern(regexp="^[\\p{Alpha}]{2}$", message="O <b>código</b> deve ser alfabético de dois dígitos.")
 	private String codigo;
 	
-	@JsonView(Views.Public.class)
 	@NotBlank(message="O <b>nome</b> é obrigatório.")
 	@Column(name="NOME", length=80)
 	private String nome;
 	
-	@JsonView(Views.Public.class)
+	@JsonView(Views.Curso.class)
 	@NotBlank(message="A <b>descrição</b> é obrigatória.")
 	@Column(name="DESCRICAO", length=100)
 	private String descricao;
 	
-	@JsonView(Views.Compound.class)
 	@NotNull(message="O <b>departamento</b> é obrigatório.")
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_DEPARTAMENTO")
 	private Departamento departamento;
 	
 	@Override
+	@JsonView({Views.Lookup.class})
 	public int getId() {
 		return id;
 	}
@@ -69,6 +67,7 @@ public class Curso extends Entidade {
 		this.codigo = codigo;
 	}
 	
+	@JsonView({Views.Lookup.class})
 	public String getNome() {
 		return nome;
 	}
@@ -85,6 +84,7 @@ public class Curso extends Entidade {
 		this.descricao = descricao;
 	}
 	
+	@JsonView({Views.Curso.class})
 	public Departamento getDepartamento() {
 		return departamento;
 	}

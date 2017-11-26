@@ -6,4 +6,6 @@ import br.ps.timetable.model.Departamento;
 
 public interface Departamentos extends CrudRepository<Departamento, Integer> {
 
+	public Departamento findByCodigo(int codigo);
+
 }

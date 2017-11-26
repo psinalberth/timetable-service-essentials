@@ -21,7 +21,7 @@ public class ProfessorController {
 	private Professores professores;
 	
 	@RequestMapping(path="/", method=RequestMethod.GET)
-	@JsonView({Views.Compound.class})
+	@JsonView({Views.Professor.class})
 	public Iterable<Professor> all() {
 		return professores.findAll();
 	}

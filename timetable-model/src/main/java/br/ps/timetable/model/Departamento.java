@@ -20,7 +20,6 @@ public class Departamento extends Entidade {
 
 	private static final long serialVersionUID = 1279015074878610823L;
 	
-	@JsonView(Views.Public.class)
 	@Id
 	@Column(name="ID_DEPARTAMENTO")
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -30,7 +29,7 @@ public class Departamento extends Entidade {
 	@Column(name="CODIGO", unique=true, length=5)
 	@Pattern(regexp="^[\\p{Alpha}]{3,5}$", message="O código deve ser alfabético de três a cinco dígitos.")
 	private String codigo;
-
+	
 	@NotBlank(message="O <b>nome</b> é obrigatório.")
 	@Column(name="NOME", length=80)
 	private String nome;
@@ -39,7 +38,7 @@ public class Departamento extends Entidade {
 	@Column(name="DESCRICAO", length=100)
 	private String descricao;
 	
-	@JsonView(Views.Compound.class)
+	@JsonView({Views.Lookup.class})
 	@Override
 	public int getId() {
 		return id;
@@ -58,7 +57,7 @@ public class Departamento extends Entidade {
 		this.codigo = codigo;
 	}
 	
-	@JsonView(Views.Compound.class)
+	@JsonView({Views.Lookup.class})
 	public String getNome() {
 		return nome;
 	}
