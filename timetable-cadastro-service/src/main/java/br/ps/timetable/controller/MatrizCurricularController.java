@@ -41,13 +41,13 @@ public class MatrizCurricularController {
 		return matrizesCurriculares.findOne(id).getPeriodos();
 	}
 	
-	@JsonView(Views.MatrizCurricular.class)
+	@JsonView(Views.Periodo.class)
 	@RequestMapping(path="/{matriz}/periodos/{periodo}/detalhes")
 	public List<DetalheDisciplina> getDetalhes(@PathVariable("matriz") int matrizId, @PathVariable("periodo") int periodoId) {
 		return matrizesCurriculares.findOne(matrizId).getPeriodos().get(periodoId-1).getDetalhes();
 	}
 	
-	@JsonView(Views.MatrizCurricular.class)
+	@JsonView(Views.DetalheDisciplina.class)
 	@RequestMapping(path="/{matriz}/periodos/{periodo}/detalhes/{detalhe}")
 	public DetalheDisciplina getDisciplina(@PathVariable("matriz") int matrizId, @PathVariable("periodo") int periodoId, 
 			                               @PathVariable("detalhe") int detalheId) {

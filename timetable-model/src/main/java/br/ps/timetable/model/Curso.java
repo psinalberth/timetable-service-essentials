@@ -59,6 +59,7 @@ public class Curso extends Entidade {
 		this.id = id;
 	}
 	
+	@JsonView(Views.Lookup.class)
 	public String getCodigo() {
 		return codigo;
 	}
@@ -84,7 +85,7 @@ public class Curso extends Entidade {
 		this.descricao = descricao;
 	}
 	
-	@JsonView({Views.Curso.class})
+	@JsonView({Views.Lookup.class})
 	public Departamento getDepartamento() {
 		return departamento;
 	}

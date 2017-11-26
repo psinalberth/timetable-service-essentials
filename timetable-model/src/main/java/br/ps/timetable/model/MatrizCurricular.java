@@ -94,7 +94,7 @@ public class MatrizCurricular extends Entidade {
 		this.semestres = semestres;
 	}
 	
-	@JsonView(Views.MatrizCurricular.class)
+	@JsonView(Views.Lookup.class)
 	public Curso getCurso() {
 		return curso;
 	}

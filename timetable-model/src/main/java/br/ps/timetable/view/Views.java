@@ -11,6 +11,14 @@ import com.fasterxml.jackson.annotation.JsonView;
  */
 public class Views {
 	
+	public interface DetalheDisciplina extends Lookup {
+
+	}
+
+	public interface Periodo extends Lookup {
+
+	}
+
 	/**
 	 * Interface base, comum a todas as <i>views</i>, encarregada pela exibição de apenas informações essenciais
 	 * de classes dentro de outras classes, como {@code id}, {@code nome}, etc
