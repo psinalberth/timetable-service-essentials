@@ -27,6 +27,7 @@ public class ProfessorController {
 	}
 	
 	@RequestMapping(path="/{id}", method=RequestMethod.GET)
+	@JsonView({Views.Professor.class})
 	public Professor byId(@PathVariable("id") int id) {
 		return professores.findOne(id);
 	}
